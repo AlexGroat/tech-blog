@@ -1,0 +1,17 @@
+[
+    {
+        "title": "How do you get your news",
+        "content": "What platforms do you use to get news?",
+        "user_id": "1"
+    },
+    {
+        "title": "New favourite piece of tech",
+        "content": "What is your favourite piece of new tech?",
+        "user_id": "2"
+    },
+    {
+        "title": "Grow the NBL",
+        "content": "How has the NBL grown in previous years?",
+        "user_id": "3"
+    }
+]
