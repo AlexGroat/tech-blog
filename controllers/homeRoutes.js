@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
             ],
             include: [{
                     model: Comment,
-                    attributes: ['id', 'comment_content', 'post_id', 'user_id', 'created_at'],
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                     include: {
                         model: User,
                         attributes: ['username']
@@ -29,8 +29,8 @@ router.get('/', (req, res) => {
                 }
             ]
         })
-        .then(data => {
-            const posts = data.map(post => post.get({
+        .then(dbPostData => {
+            const posts = dbPostData.map(post => post.get({
                 plain: true
             }));
 
@@ -58,7 +58,7 @@ router.get('/post/:id', (req, res) => {
             ],
             include: [{
                     model: Comment,
-                    attributes: ['id', 'comment_content', 'post_id', 'user_id', 'created_at'],
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                     include: {
                         model: User,
                         attributes: ['username']
@@ -70,15 +70,15 @@ router.get('/post/:id', (req, res) => {
                 }
             ]
         })
-        .then(data => {
-            if (!data) {
+        .then(dbPostData => {
+            if (!dbPostData) {
                 res.status(404).json({
                     message: 'No post found with this id'
                 });
                 return;
             }
 
-            const post = data.get({
+            const post = dbPostData.get({
                 plain: true
             });
 
